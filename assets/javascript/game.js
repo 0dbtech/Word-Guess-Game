@@ -1,9 +1,11 @@
-var wordBank = ["avid", "adobe", "vegas", "protools", "mediacomposer"]
+var wordBank = ["avid", "adobe", "vegas", "protools", "harry"]
 
 var wins = 0;
 var losses = 0;
 var guess = 0;
 var wrong = 10;
+var letters = [];
+var wrongLetters = [];
 
 // Randomly chooses a choice from the options array. This is the Computer's guess.
 var wordSelect = wordBank[Math.floor(Math.random() * wordBank.length)];
@@ -17,7 +19,11 @@ x = "a";
 stringValue = String(x);
 console.log(wordSelect.indexOf(stringValue));
 
+for(i=0; i<wordSelect.length; i++){
+letters.push("_");
+}
 
+console.log("items in array letters " + letters);
 //get user input
 // document.onkeyup = function(event) {
 
@@ -49,18 +55,22 @@ console.log("reminder the word is " + wordSelect);
 for (i=0; i<wordSelect.length; i++){
   
   if (i === wordSelect.indexOf(stringValue) ){
-  console.log(stringValue + " is a correct letter.")
+  console.log(stringValue + " is a correct letter.");
+  letters.splice(i, 1, stringValue);
   }
-  else{
-    console.log(stringValue + " is a wrong letter.");
   
-  }
   
 
 
 }
 
+console.log("items in CORRECT array letters " + letters);
 
+if (wordSelect.indexOf(stringValue) === -1) {
+  console.log(stringValue + " is a wrong letter.");
+  wrongLetters.splice(0, 0, stringValue);
+    console.log("wrong letters " + wrongLetters);
+ }
 
 
 
