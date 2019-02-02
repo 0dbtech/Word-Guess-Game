@@ -7,6 +7,15 @@ var guessRemain = 10;
 var letters = [];
 var wrongLetters = [];
 
+//check for double letters
+function getAllIndexes(arr, val) {
+  var indexes = [], i;
+  for(i = 0; i < arr.length; i++)
+      if (arr[i] === val)
+          indexes.push(i);
+  return indexes;
+}
+
 // Randomly chooses a choice from the options array. This is the Computer's guess.
 var wordSelect = wordBank[Math.floor(Math.random() * wordBank.length)];
 
@@ -19,6 +28,12 @@ console.log("The secret word is: " + wordSelect);
 // stringValue = String(x);
 // console.log(wordSelect.indexOf(stringValue));
 
+
+//split selected work letters into string
+var wordSelectSplit = wordSelect.split("");
+console.log(wordSelectSplit);
+
+//write blanks for selected word
 for(i=0; i<wordSelect.length; i++){
 letters.push("_");
 }
@@ -38,6 +53,7 @@ console.log("items in array letters " + letters);
 
 
 console.log("OUTSIDE OF DOC KEYUP");
+//START keyboard input function
 
 document.onkeyup = function(event) {
   console.log("TOP OF DOC KEYUP");
@@ -56,12 +72,12 @@ if (guessRemain === 0){
 
   
   console.log("guess remaining " + guessRemain);
-  console.log(wordSelect.indexOf(stringValue));
+  console.log(wordSelectSplit.indexOf(stringValue));
 
 console.log("You just typed letter " + userGuess);
 console.log("reminder the word is " + wordSelect);
 console.log("guess remaining " + guessRemain);
-if ( (wordSelect.indexOf(stringValue)) === -1 ) {
+if ( (wordSelectSplit.indexOf(stringValue)) === -1 ) {
   console.log("WRONG");
   console.log("guess remaining " + guessRemain);
   // --guessRemain;
@@ -73,15 +89,20 @@ if ( (wordSelect.indexOf(stringValue)) === -1 ) {
   }
 
 
-for (i=0; i<wordSelect.length; i++){
+for (i=0; i<wordSelectSplit.length; i++){
 
   //END GAME IF ALL LETTERS GUESSED
-  if ( (wordSelect.indexOf[i]) === (letters.indexOf[i]) ){
-  console.log("YOU WON");
-  }
-  
-  if (i === wordSelect.indexOf(stringValue) ){
+  // if ( (wordSelectSplit.indexOf[i]) === (letters.indexOf[i]) ){
+  // console.log("YOU WON");
+  // }
+  getAllIndexes(wordSelectSplit,stringValue);
+
+  if (i === wordSelectSplit.indexOf(stringValue) ){
   console.log(stringValue + " is a correct letter.");
+
+  console.log("checking for duplicate letters");
+console.log(getAllIndexes(wordSelectSplit,stringValue));
+
   letters.splice(i, 1, stringValue);
   console.log("guess remaining " + guessRemain);
   }
