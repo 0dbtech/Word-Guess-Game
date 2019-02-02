@@ -58,8 +58,10 @@ console.log("OUTSIDE OF DOC KEYUP");
 document.onkeyup = function(event) {
   console.log("TOP OF DOC KEYUP");
   console.log("guess remaining " + guessRemain);
-if (guessRemain === 0){
+if (guessRemain < 1){
   console.log("GAME OVER");
+  //EXIT FUNCTION
+  return
   console.log("guess remaining " + guessRemain);
 }
 
@@ -78,9 +80,27 @@ console.log("You just typed letter " + userGuess);
 console.log("reminder the word is " + wordSelect);
 console.log("guess remaining " + guessRemain);
 if ( (wordSelectSplit.indexOf(stringValue)) === -1 ) {
+
   console.log("WRONG");
+
+        if (wrongLetters.indexOf(stringValue) === -1){
+          console.log("guess remaining " + guessRemain);
+          
+          wrongLetters.splice(0, 0, stringValue);
+          guessRemain--;
+          
+        }
+        else{
+          console.log(stringValue + " was already typed wrong");
+          return
+          // guessRemain--;
+        }
+  
   console.log("guess remaining " + guessRemain);
-  // --guessRemain;
+  //decrease reamaining guess
+  
+  
+
   console.log("guess remaining " + guessRemain);
   }
   else {
@@ -95,7 +115,10 @@ for (i=0; i<wordSelectSplit.length; i++){
   // if ( (wordSelectSplit.indexOf[i]) === (letters.indexOf[i]) ){
   // console.log("YOU WON");
   // }
-  getAllIndexes(wordSelectSplit,stringValue);
+  var matchingLetters = getAllIndexes(wordSelectSplit,stringValue);
+  console.log("letters match at " + matchingLetters);
+  //Splice into letters at matching indexes
+
 
   if (i === wordSelectSplit.indexOf(stringValue) ){
   console.log(stringValue + " is a correct letter.");
@@ -124,12 +147,12 @@ console.log(getAllIndexes(wordSelectSplit,stringValue));
 
 }
 
-if (wrongLetters.indexOf(stringValue) === -1){
-  console.log("guess remaining " + guessRemain);
-  console.log(stringValue + " was NOT already typed wrong");
-  wrongLetters.splice(0, 0, stringValue);
-  // guessRemain--;
-}
+// if (wrongLetters.indexOf(stringValue) === -1){
+//   console.log("guess remaining " + guessRemain);
+//   console.log(stringValue + " was NOT already typed wrong");
+//   wrongLetters.splice(0, 0, stringValue);
+//   // guessRemain--;
+// }
 console.log("guess remaining " + guessRemain);
   console.log("items in CORRECT array letters " + letters);
 
