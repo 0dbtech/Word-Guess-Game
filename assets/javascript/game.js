@@ -1,13 +1,19 @@
 var wordBank = ["AVID", "ADOBE", "VEGAS", "FUSION", "CUBASE", "LOGIC", "FINALCUTPROX", "DAVINCI", "ABELTON", "AUTODESK", "UNITY"]
 var wins = 0;
-var losses = 0;
+var loss = 0;
 var wrongGuess = 0;
-var guessRemain = 5;
+var guessRemain = 10;
 var letters = [];
 var wrongLetters = [];
 
 
 var wordSelectSplit = newWord();
+
+
+
+for(i=0; i<wordSelectSplit.length; i++){
+  letters.push("_");
+  }
 
 
 //check for double letters
@@ -26,16 +32,18 @@ function newWord(){
   //split selected work letters into string
   var wordSelectSplit = wordSelect.split("");
 
-  //write blanks for selected word
-for(i=0; i<wordSelectSplit.length; i++){
-  letters.push("_");
-  }
+//   write blanks for selected word
+// for(i=0; i<wordSelectSplit.length; i++){
+//   letters.push("_");
+//   }
   console.log("new word " + wordSelectSplit + " selected");
+
 return wordSelectSplit;
 
 //Populate empty page to start
 startDiv.innerHTML = ("Click to Start Game");
 winsDiv.innerHTML = ("Wins: " + wins);
+// lossDiv.innerHTML = ("Losses: " + loss);
 guessDiv.innerHTML = ("Guesses Remaining: " + guessRemain);
 wrongDiv.innerHTML = ("Incorrect Letters: " + wrongLetters);
 wordDiv.innerHTML = ("Secret Word: " + letters);
@@ -71,14 +79,16 @@ wordDiv.innerHTML = ("Secret Word: " + letters);
 
 //DOM element vars
 var winsDiv = document.getElementById("wins-text");
+var lossDiv = document.getElementById("loss-text");
 var guessDiv = document.getElementById("guess-text");
 var wrongDiv = document.getElementById("wrong-text");
 var wordDiv = document.getElementById("word-text");
 var startDiv = document.getElementById("start-text");
 
 //Populate empty page to start
-startDiv.innerHTML = ("Click to Start Game");
+startDiv.innerHTML = ("Click here to Start Game and then type a letter!");
 winsDiv.innerHTML = ("Wins: " + wins);
+// lossDiv.innerHTML = ("Losses: " + loss);
 guessDiv.innerHTML = ("Guesses Remaining: " + guessRemain);
 wrongDiv.innerHTML = ("Incorrect Letters: " + wrongLetters);
 wordDiv.innerHTML = ("Secret Word: " + letters);
@@ -88,18 +98,27 @@ wordDiv.innerHTML = ("Secret Word: " + letters);
 //click to start game
 document.getElementById("start-text").onclick = function() {
   console.log("cliked");
+  location.reload();
      //Reset vars
-     guessRemain = 5;
-     letters = [];
-     wrongLetters = [];
-     //Populate empty page to start
-startDiv.innerHTML = ("Click to Start Game");
-winsDiv.innerHTML = ("Wins: " + wins);
-guessDiv.innerHTML = ("Guesses Remaining: " + guessRemain);
-wrongDiv.innerHTML = ("Incorrect Letters: " + wrongLetters);
-wordDiv.innerHTML = ("Secret Word: " + letters);
+//      guessRemain = 10;
+//      letters = [];
+//      wrongLetters = [];
+//      //Populate empty page to start
+// startDiv.innerHTML = ("Click here to Start Game and then type a letter!");
+// winsDiv.innerHTML = ("Wins: " + wins);
+// // lossDiv.innerHTML = ("Losses: " + loss);
+// guessDiv.innerHTML = ("Guesses Remaining: " + guessRemain);
+// wrongDiv.innerHTML = ("Incorrect Letters: " + wrongLetters);
+// wordDiv.innerHTML = ("Secret Word: " + letters);
 
-  newWord()};
+//   newWord();
+//   wordDiv.innerHTML = ("Secret Word: " + letters);
+  return;
+}
+
+
+  // write blanks for selected word
+
 // console.log("testing index of with string conversion");
 // x = "a";
 // stringValue = String(x);
@@ -136,11 +155,7 @@ console.log("OUTSIDE OF DOC KEYUP");
 
 document.onkeyup = function(event) {
 
-//check for wins  
-if (wordSelectSplit === letters){
-  alert("YOU WON!");
-newWord();
-}
+ 
 
 
   console.log("TOP OF DOC KEYUP");
@@ -149,12 +164,15 @@ if (guessRemain < 1){
   console.log("GAME OVER");
   alert("YOU LOST!");
   location.reload();
+  
   //EXIT FUNCTION
   
   return
-  var wordSelect = wordBank[Math.floor(Math.random() * wordBank.length)];
-  console.log("guess remaining " + guessRemain);
+  // var wordSelect = wordBank[Math.floor(Math.random() * wordBank.length)];
+  // console.log("guess remaining " + guessRemain);
 }
+
+
 
 
   // Determines which key was pressed.
@@ -163,15 +181,13 @@ if (guessRemain < 1){
   console.log("about to run string conversion");
   stringValue = String(userGuess);
   //convert case
-  stringValue= stringValue.toUpperCase();
+  stringValue = stringValue.toUpperCase();
   console.log("converted " + stringValue + " to UpperCase");
   
   console.log("guess remaining " + guessRemain);
   console.log(wordSelectSplit.indexOf(stringValue));
 
-console.log("You just typed letter " + userGuess);
-console.log("reminder the word is " + wordSelect);
-console.log("guess remaining " + guessRemain);
+
 if ( (wordSelectSplit.indexOf(stringValue)) === -1 ) {
 
   console.log("WRONG");
@@ -223,7 +239,11 @@ console.log(getAllIndexes(wordSelectSplit,stringValue));
   }
 
   
+  if (wordSelectSplit === letters){
+    console.log("wins here");
+    alert("YOU WON!");
   
+  }
   
   // console.log("items in CORRECT array letters " + letters);
 
@@ -256,6 +276,7 @@ console.log("guess remaining " + guessRemain);
 // var wrongDiv = document.getElementById("word-text");
 
   winsDiv.innerHTML = ("Wins: " + wins);
+  // lossDiv.innerHTML = ("Losses: " + loss);
   guessDiv.innerHTML = ("Guesses Remaining: " + guessRemain);
   wrongDiv.innerHTML = ("Incorrect Letters: " + wrongLetters);
   wordDiv.innerHTML = ("Secret Word: " + letters);
@@ -266,8 +287,9 @@ console.log("guess remaining " + guessRemain);
 // var guessRemain = 10;
 // var letters = [];
 // var wrongLetters = [];
+//check for wins  
 
-
+console.log("# reminder the word is " + wordSelectSplit);
 console.log ("done here");
 return
 //END
