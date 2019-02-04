@@ -6,28 +6,17 @@ The theme of this game is Content Creation Software!
 
 You will have 10 incorrect letter guesses per word.
 
+Incorrect letters will be displayed as guessed.  You will lose 1 guess per incorrect letter.
+
+Correct letters will be revealed in the secret word blanks. 
+
 Type a letter to get started.
 
+Click the top of the page as indicated to reset the game with a new word.
+
+Good luck!
 
 
-
-
-
-
-3. Use key events to listen for the letters that your players will type.
-
-4. Display the following on the page:
-
-5. Press any key to get started!
-
-6. Wins: (# of times user guessed the word correctly).
-
-   * If the word is `madonna`, display it like this when the game starts: `_ _ _ _ _ _ _`.
-
-   * As the user guesses the correct letters, reveal them: `m a d o _  _ a`.
-
-7. Number of Guesses Remaining: (# of guesses remaining for the user).
-
-8. Letters Already Guessed: (Letters the user has guessed, displayed like `L Z Y H`).
-
-9. After the user wins/loses the game should automatically choose another word and make the user play it.
+Bug List:
+1. Words with duplicate letters
+2. Reset game automatically after win
